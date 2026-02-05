@@ -44,6 +44,9 @@ RUN npm run build
 ######## WebUI backend ########
 FROM python:3.11-slim-bookworm AS base
 
+# Serialize build to save memory
+COPY --from=build /app/build /tmp/frontend-build
+
 # Use args
 ARG USE_CUDA
 ARG USE_OLLAMA
